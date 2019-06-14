@@ -89,7 +89,7 @@ public class DownloadActivity extends AppCompatActivity {
         if(downManager!=null&&id!=0) {
             downManager.remove(id);
         }else{
-            Toast.makeText(getApplicationContext(),"未知错误",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),"未知错误",Toast.LENGTH_SHORT).show();
         }
     }
 }
