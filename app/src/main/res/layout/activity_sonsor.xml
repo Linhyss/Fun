@@ -4,19 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="android.linhyss.fun.SensorActicity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/orange"
+        android:textSize="30dp"
+        android:visibility="gone"
+        android:id="@+id/sensorshow"
+        android:text="传感器"/>
     <ScrollView
         android:id="@+id/weather_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
+
         android:scrollbars="none"
         android:background="@color/white"
         android:overScrollMode="never">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/sensorshow"
-        android:text="传感器"/>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/recyc_sensor"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
     </ScrollView>
 
 </LinearLayout>

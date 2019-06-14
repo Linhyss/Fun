@@ -18,6 +18,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,6 +29,7 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="aWuKwuvtq18OBWeGzDdWjXlr2hCQbr2U" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,11 +42,13 @@
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
+
         <activity android:name=".FunctionList" />
         <activity android:name=".BaiduLBSActivity" />
         <activity android:name=".BluetoothActivity" />
         <activity android:name=".DownloadActivity" />
-        <activity android:name=".SensorActicity"></activity>
+        <activity android:name=".SensorActicity" />
+        <activity android:name=".SensorRunActivity"></activity>
     </application>
 
 </manifest>
