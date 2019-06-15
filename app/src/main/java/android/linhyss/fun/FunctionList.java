@@ -1,5 +1,6 @@
 package android.linhyss.fun;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.hardware.SensorManager;
@@ -14,7 +15,10 @@ import android.telecom.Call;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -32,15 +36,16 @@ public class FunctionList extends AppCompatActivity {
     private List<Function> mfunctionlist=new ArrayList<>();
     String[] functionname={"传感器","百度定位","蓝牙功能","下载更新"};
     FunctionAdapter adapter;
-
+    private ListView menulv;
     public SwipeRefreshLayout swipeRefresh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_function_list);
         RecyclerView recyclerView=(RecyclerView) findViewById(R.id.recyc_function);
-        initFunction();
+        menulv=(ListView)findViewById(R.id.menulist);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+        initFunction();
         adapter=new FunctionAdapter(mfunctionlist);
         GridLayoutManager gridLayoutManager =new GridLayoutManager(this,2);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -51,8 +56,28 @@ public class FunctionList extends AppCompatActivity {
 
                 swipeRefresh.setRefreshing(false);
             }
+        });String[] data={"菜单","关于","设置"};
+        ArrayAdapter<String>arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,data);
+        menulv.setAdapter(arrayAdapter);
+        menulv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            Intent setting;
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i){
+                    case 1:
+                         setting=new Intent(FunctionList.this,infomation.class);
+                        startActivity(setting);
+                        break;
+                    case 2:
+                         setting=new Intent(FunctionList.this,SettingActivity.class);
+                        startActivity(setting);
+                        break;
+                    default:break;
+
+                }
+            }
         });
-    }
+   }
 
     private void initFunction(){
         int size=functionname.length;
