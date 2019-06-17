@@ -56,7 +56,8 @@ public class FunctionList extends AppCompatActivity {
 
                 swipeRefresh.setRefreshing(false);
             }
-        });String[] data={"菜单","关于","设置"};
+        });
+        String[] data={"菜单","关于","设置"};
         ArrayAdapter<String>arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,data);
         menulv.setAdapter(arrayAdapter);
         menulv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

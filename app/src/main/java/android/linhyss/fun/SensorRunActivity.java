@@ -43,9 +43,9 @@ public class SensorRunActivity extends AppCompatActivity implements SensorEventL
         switch (sensorType) {
             case Sensor.TYPE_ACCELEROMETER:
                 sb.append(" 加速度传感器(Accelerometer sensor)" + "\n");
-                sb.append(" 传感器值1：" + event.values[0]+"\n");
-                sb.append(" 传感器值2：" + event.values[1]+"\n");
-                sb.append(" 传感器值3：" + event.values[2]+"\n");
+                sb.append(" x：" + event.values[0]+"m/s2\n");
+                sb.append(" y：" + event.values[1]+"m/s2\n");
+                sb.append(" z：" + event.values[2]+"m/s2\n");
                 break;
             case Sensor.TYPE_GYROSCOPE:
                 sb.append(" 陀螺仪传感器(Gyroscope sensor)" + "\n");
@@ -55,33 +55,27 @@ public class SensorRunActivity extends AppCompatActivity implements SensorEventL
                 break;
             case Sensor.TYPE_LIGHT:
                 sb.append( " 光线传感器(Light sensor)" + "\n");
-                sb.append(" 传感器值1：" + event.values[0]+"\n");
-                sb.append(" 传感器值2：" + event.values[1]+"\n");
-                sb.append(" 传感器值3：" + event.values[2]+"\n");
+                sb.append(" 光线强度：" + event.values[0]+"lux\n");
                 break;
             case Sensor.TYPE_MAGNETIC_FIELD:
                 sb.append(" 磁场传感器(Magnetic field sensor)" + "\n");
-                sb.append(" 传感器值1：" + event.values[0]+"\n");
-                sb.append(" 传感器值2：" + event.values[1]+"\n");
-                sb.append(" 传感器值3：" + event.values[2]+"\n");
+                sb.append(" X：" + event.values[0]+"T\n");
+                sb.append(" Y：" + event.values[1]+"T\n");
+                sb.append(" Z：" + event.values[2]+"T\n");
                 break;
             case Sensor.TYPE_ORIENTATION:
                 sb.append( " 方向传感器(Orientation sensor)" + "\n");
-                sb.append(" 传感器值1：" + event.values[0]+"\n");
-                sb.append(" 传感器值2：" + event.values[1]+"\n");
-                sb.append(" 传感器值3：" + event.values[2]+"\n");
+                sb.append(" 方位角：" + event.values[0]+"\n");
+                sb.append(" 倾斜角：" + event.values[1]+"\n");
+                sb.append(" 滚动角：" + event.values[2]+"\n");
                 break;
             case Sensor.TYPE_PRESSURE:
                 sb.append( " 气压传感器(Pressure sensor)" + "\n");
-                sb.append(" 传感器值1：" + event.values[0]+"\n");
-                sb.append(" 传感器值2：" + event.values[1]+"\n");
-                sb.append(" 传感器值3：" + event.values[2]+"\n");
+                sb.append(" 气压：" + event.values[0]+"hPa\n");
                 break;
             case Sensor.TYPE_PROXIMITY:
                 sb.append(  " 距离传感器(Proximity sensor)" + "\n");
-                sb.append(" 传感器值1：" + event.values[0]+"\n");
-                sb.append(" 传感器值2：" + event.values[1]+"\n");
-                sb.append(" 传感器值3：" + event.values[2]+"\n");
+                sb.append(" 距离：" + event.values[0]+"cm\n");
                 break;
             case Sensor.TYPE_TEMPERATURE:
                 sb.append( " 温度传感器(Temperature sensor)" + "\n");
@@ -98,7 +92,11 @@ public class SensorRunActivity extends AppCompatActivity implements SensorEventL
 
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        sManager.unregisterListener(this);
+    }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
